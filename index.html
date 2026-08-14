@@ -8,38 +8,26 @@
     <title>week13-mid-proj</title>
   </head>
   <body>
-<!--
-	  <main id="onboarding-container" class="h-dvh flex flex-col justify-center items-center relative">
-	  	<img class="" src="/logo.svg" alt="logo">
-	  	<img class="animate-spin absolute bottom-[12.63%]" src="/loading.svg" alt="loading">
+<!--	  <div class="vw border-t-2 w-screen z-1 bg-white whitespace-pre-line border-red-600 absolute top-10"></div>-->
+	  <main class="w-screen overflow-hidden">
+		  <section id="slider" class="flex transition-transform duration-500 ease-in-out">
+			   <section id="p1" class="onboarding-page h-dvh min-w-screen flex flex-col justify-center items-center relative">
+				<img class="" src="/logo.svg" alt="logo">
+				<img class="animate-spin absolute bottom-[12.63%]" src="/loading.svg" alt="loading">
+			   </section>
+
+			   <section id="p2" class="onboarding-page h-dvh min-w-screen relative">
+				  <img src="/lots-of-shoes.png" alt="shoes" class="w-full h-full object-cover">
+				  <div class="absolute inset-0 h-full bg-onboarding"></div>
+				  <div class="font-inter absolute bottom-[7.99%] left-[7.24%] right-[7%] text-white">
+					<p class="text-4xl font-semibold mb-[0.59%]">Welcome to 👋</p>
+					<h1 class="text-[4.5rem] font-bold mb-[1.67%]">Shoeа</h1>
+					<p class="font-semibold text-base/5.5">The best sneakers & shoes e-commerce app of the century for your fashion needs!</p>
+				  </div>
+			   </section>
+			   <section><p>فاطمه زهرا علی پور</p></section>
+		   </section>
 	  </main>
--->
-	   <main id="onboarding-container" class="h-dvh w-screen relative">
-	  
-
-    <img src="/lots-of-shoes.png" alt="shoes" class="w-full h-full object-cover">
-
-    <div class="absolute inset-0 h-full bg-onboarding"></div>
-
-    <!-- Text -->
-    <div class="absolute bottom-8 left-5 right-5 text-white">
-
-        <p class="text-xl font-bold">
-            Welcome to 👋
-        </p>
-
-        <h1 class="text-4xl font-bold">
-            Shoeа
-        </h1>
-
-        <p class="mt-5 text-xs">
-            The best sneakers & shoes e-commerce app of
-            the century for your fashion needs!
-        </p>
-
-    </div>
-		 
- 	  </main>
       <script type="module" src="/src/main.js"></script>
   </body>
 </html>
