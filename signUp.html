@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/shoe.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>signUp</title>
+  </head>
+  <body>
+	  <main class="flex flex-col items-center relative h-dvh short:h-[660px] short:mb-10">
+		  <img src="/leftArrow.svg" alt="back" class="absolute top-[2.26%] left-[3.45%] cursor-pointer">
+	  	  <img src="/authLogo.svg" alt="logo" class="absolute top-[14.25%]">
+		  <h1 class="font-semibold text-[2rem]/[100%] absolute top-[35.74%] text-center">Signup to Your Account</h1>
+		  <form id="signup-form" class="absolute top-[45.14%] w-[88.78%] max-w-95 font-inter flex flex-col">
+			  <section class="relative">
+				  <svg id="envelopeSvg" class="absolute left-[3.42%] top-[14.5px] z-1 text-cool-gray-600" width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+				  <input id="username" type="text" placeholder="Username" class="w-full bg-input rounded-sm  pl-[8.5%] py-2 placeholder:text-sm placeholder:font-normal placeholder:text-cool-gray-600 focus:outline-2 outline-black">
+<!--				  <p>bvhfvbhjbhjb</p>-->
+			  </section>
+			  
+			  <section class="relative mt-[5.52%]">
+				  <svg id="lockSvg" class="absolute left-[3.42%] top-[13px] text-cool-gray-600 z-1" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+				  <input id="password" type="password" placeholder="Password" class="w-full bg-input rounded-sm  pl-[8.5%] py-2 placeholder:text-sm placeholder:font-normal placeholder:text-cool-gray-600 focus:outline-2 outline-black">
+				  <svg id="eyeSvg" class="absolute top-[13px] right-[3.42%] cursor-pointer text-cool-gray-600" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+			  </section>
+			  <a href="index.html" class="font-medium text-sm/[150%] mt-[7.89%] text-center cursor-pointer">Login</a>
+		  </form>
+		  <button type="submit" form="signup-form" id="signup-btn" disabled class="absolute cursor-pointer disabled:cursor-not-allowed bg-dark disabled:bg-dark/65 text-white border border-dark disabled:border-dark/65 rounded-[1.875rem] font-medium text-sm/[150%] w-[88.78%] max-w-95 py-3 bottom-[3.45%]">Signup</button>
+	  </main>
+	  
+  	
+	  <script type="module" src="/src/signUp.js"></script>
+	  <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

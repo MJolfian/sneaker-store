@@ -7,6 +7,9 @@
 	--font-inter:Inter, sans-serif;
 	/* color */
 	--color-dark:#212529;
+	--color-cool-gray-600:#6C757D;
+	--color-input:#FAFAFA;
+	--color-envelope:#6C757D;
 	/* background-image */
 	--background-image-onboarding: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
 }
