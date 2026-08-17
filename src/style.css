@@ -1,1 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
+
+@custom-variant short (@media (max-height: 500px));
+@theme{
+	/* font */
+	--font-inter:Inter, sans-serif;
+	/* color */
+	--color-dark:#212529;
+	--color-cool-gray-600:#6C757D;
+	--color-input:#FAFAFA;
+	--color-envelope:#6C757D;
+	/* background-image */
+	--background-image-onboarding: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+}

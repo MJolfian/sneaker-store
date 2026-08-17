@@ -2,14 +2,76 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/shoe.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--	<link href="/src/style.css" rel="stylesheet">-->
     <title>week13-mid-proj</title>
   </head>
   <body>
- <h1 class="text-3xl font-bold underline border border-red-500 text-right">
-    Hello world!
-  </h1>    <script type="module" src="/src/main.js"></script>
+	  <div class="vw border-t-2 w-screen z-1 bg-white whitespace-pre-line border-red-600 absolute top-10"></div>
+	  <main class="w-screen overflow-hidden">
+		  <section id="slider" class="flex transition-transform duration-500 ease-in-out font-inter">
+			   <section id="page1" class="onboarding-page h-dvh min-w-screen flex flex-col justify-center items-center relative">
+				<img class="" src="/logo.svg" alt="logo">
+				<img class="animate-spin absolute bottom-[12.63%]" src="/loading.svg" alt="loading">
+			   </section>
+
+			   <section id="page2" class="onboarding-page h-dvh min-w-screen relative">
+				  <img src="/lots-of-shoes.png" alt="shoes" class="w-full h-full object-cover">
+				  <div class="absolute inset-0 h-full bg-onboarding"></div>
+				  <div class="absolute bottom-[7.99%] left-[7.24%] right-[7%] text-white">
+					<p class="text-4xl font-semibold mb-[0.59%]">Welcome to 👋</p>
+					<h1 class="text-[4.5rem] font-bold mb-[1.67%]">Shoeа</h1>
+					<p class="font-semibold text-base/5.5">The best sneakers & shoes e-commerce app of the century for your fashion needs!</p>
+				  </div>
+			   </section>
+			   <section id="page3" class="h-dvh min-w-screen">
+				   <div class="w-full h-[70.95%]">
+				   	  <img src="/onboarding-p3.png" alt="welcome" class="w-full h-full object-cover">
+				   </div>
+				   <section class="flex flex-col items-center min-h-[29.05%] relative">
+					   <p class="font-semibold text-[2rem]/[100%] text-center absolute top-[9.87%]">We provide high quality products just for you</p>
+					   <section class="flex gap-x-[5.88%] w-[23.83%] max-w-25 absolute top-[56.17%]">
+							<hr class='flex-1 border-3 border-black'>
+							<hr class='flex-1 border-3 border-black/50'>
+							<hr class='flex-1 border-3 border-black/50'>
+					   </section>
+					   <button id="btn-p3" class="w-[22.5rem] text-white bg-dark border border-dark rounded-[1.875rem] font-medium text-sm py-3 cursor-pointer absolute top-[75.61%]">Next</button>
+				   </section>
+			   </section>
+			   <section id="page4" class="h-dvh min-w-screen">
+				   <div class="w-full h-[70.95%]">
+				   	  <img src="/onboarding-p4.png" alt="welcome" class="w-full h-full object-cover">
+				   </div>
+				   <section class="flex flex-col items-center min-h-[29.05%] relative">
+					   <p class="font-semibold text-[2rem]/[100%] text-center absolute top-[9.87%]">Your satisfaction is our number one periority</p>
+					   <section class="flex gap-x-[5.88%] w-[23.83%] max-w-25 absolute top-[56.17%]">
+							<hr class='flex-1 border-3 border-black/50'>
+							<hr class='flex-1 border-3 border-black'>
+							<hr class='flex-1 border-3 border-black/50'>
+					   </section>
+					   <button id="btn-p4" class="w-[22.5rem] text-white bg-dark border border-dark rounded-[1.875rem] font-medium text-sm py-3 cursor-pointer absolute top-[75.61%]">Next</button>
+				   </section>
+			   </section>
+			   <section id="page5" class="h-dvh min-w-screen">
+				   <div class="w-full h-[70.95%]">
+				   	  <img src="/onboarding-p5.png" alt="welcome" class="w-full h-full object-cover">
+				   </div>
+				   <section class="flex flex-col items-center min-h-[29.05%] relative">
+					   <p class="font-semibold text-[2rem]/[100%] text-center absolute top-[9.87%]">Let’s fulfill your fashion needs with shoearight now!</p>
+					   <section class="flex gap-x-[5.88%] w-[23.83%] max-w-25 absolute top-[56.17%]">
+							<hr class='flex-1 border-3 border-black/50'>
+							<hr class='flex-1 border-3 border-black/50'>
+							<hr class='flex-1 border-3 border-black'>
+					   </section>
+					   <a href="signUp.html" id="btn-p5" class="w-[22.5rem] text-center text-white bg-dark border border-dark rounded-[1.875rem] font-medium text-sm py-3 cursor-pointer absolute top-[75.61%]">Get Started</a>
+				   </section>
+			   </section>
+			  
+			  
+		   </section>
+	  </main>
+      <script type="module" src="/src/main.js"></script>
+      <script type="module" src="/src/onboarding.js"></script>
   </body>
 </html>
