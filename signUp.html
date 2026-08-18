@@ -15,15 +15,17 @@
 			  <section class="relative">
 				  <svg id="envelopeSvg" class="absolute left-[3.42%] top-[14.5px] z-1 text-cool-gray-600" width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
 				  <input id="username" type="text" placeholder="Username" class="w-full bg-input rounded-sm  pl-[8.5%] py-2 placeholder:text-sm placeholder:font-normal placeholder:text-cool-gray-600 focus:outline-2 outline-black">
-<!--				  <p>bvhfvbhjbhjb</p>-->
+				  <p id="username-err" class="hidden text-red-400 font-semibold text-xs mt-1 pl-1"></p>
 			  </section>
 			  
 			  <section class="relative mt-[5.52%]">
 				  <svg id="lockSvg" class="absolute left-[3.42%] top-[13px] text-cool-gray-600 z-1" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
 				  <input id="password" type="password" placeholder="Password" class="w-full bg-input rounded-sm  pl-[8.5%] py-2 placeholder:text-sm placeholder:font-normal placeholder:text-cool-gray-600 focus:outline-2 outline-black">
 				  <svg id="eyeSvg" class="absolute top-[13px] right-[3.42%] cursor-pointer text-cool-gray-600" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+				  <p id="password-err" class="hidden text-red-400 font-semibold text-xs mt-1 pl-1"></p>
 			  </section>
 			  <a href="index.html" class="font-medium text-sm/[150%] mt-[7.89%] text-center cursor-pointer">Login</a>
+			  <p id="sys-err" class="hidden text-red-400 font-semibold text-xs mt-2 text-center"></p>
 		  </form>
 		  <button type="submit" form="signup-form" id="signup-btn" disabled class="absolute cursor-pointer disabled:cursor-not-allowed bg-dark disabled:bg-dark/65 text-white border border-dark disabled:border-dark/65 rounded-[1.875rem] font-medium text-sm/[150%] w-[88.78%] max-w-95 py-3 bottom-[3.45%]">Signup</button>
 	  </main>
