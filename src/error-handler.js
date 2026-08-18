@@ -1,5 +1,5 @@
 // JavaScript Document
-import {usernameErr, passwordErr, sysErr} from './signUp.js';
+import {usernameErr, passwordErr, sysErr} from './auth-svg-handler.js';
 
 function showErrors(msg){	
 		if(msg.includes('username')){
@@ -23,10 +23,19 @@ function clearErrors(){
 	sysErr.classList.add('hidden');
 }
 
-export const signUpErrorHandler = error => {
+export const signUpErrorHandler = error => {  // to signup.js
 	clearErrors();
 	const msg=error.response?.data?.message;
 	 if (Array.isArray(msg)) msg.forEach(showErrors);
      else if (typeof msg === 'string') showErrors(msg);
      else showErrors('Something Went Wrong');
-    }
+    };
+	
+export const loginErrorHandler = error => {  // to login.js
+	clearErrors();
+	const msg=error.response?.data?.message;
+	 if (Array.isArray(msg)) msg.forEach(showErrors);
+     else if (typeof msg === 'string') showErrors(msg);
+     else showErrors('Something Went Wrong');
+    };
+	
