@@ -13,7 +13,8 @@ form.addEventListener('submit',async (event)=>{
 	let data={username:userNameInputValue, password:passwordInputValue};
 	try{
 	  let resBody= await login(data);
-		localStorage.setItem(tokenName,resBody.token)
+		localStorage.setItem(tokenName,resBody.token);
+		location.href = '/home';
 		console.log(resBody);
 //		location.href='/login';
 	}catch(error){

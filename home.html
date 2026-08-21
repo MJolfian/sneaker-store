@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" type="image/svg+xml" href="/shoe.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Home</title>
+	</head>
+
+	<body>
+		<main class="font-inter">
+			<header class="flex justify-between items-center mx-[5.60vw]">
+				<section class="flex flex-col gap-y-[10px] py-[1.16vh] justify-between font-medium text-base/[100%]">
+					<span id="greeting" class="text-greeting"><span class="font-semibold">👋</span></span>
+					<span id="span-of-user-name-show" class="font-bold text-title">Saeed Abdilar</span>
+				</section>
+				<section class="flex gap-x-4">
+					<svg id="bell-svg" width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+					<svg id="heart-svg" width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+				</section>
+			</header>
+			<section class="relative mx-[5.60vw] bg-input mt-[0.58vh]">
+				<input id="search-input" type="search" placeholder="Search" class="w-full pl-[34px] py-2 rounded-sm placeholder:text-sm/[150%] placeholder:font-normal placeholder:text-placeholder focus:outline-2 outline-black">
+				<svg id="search-svg" class="absolute left-[13px] top-[10.5px] text-cool-gray-600" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+			</section>
+			<section class="flex justify-between mx-[5.60vw] mt-[2.17vh] font-semibold leading-[1] text-title">
+				<span class="text-[1.25rem]">Most Popular</span>
+				<span class="text-base">See All</span>
+			</section>
+			<section class="flex gap-x-2 ml-[5.60vw] mt-[1.45vh] leading-none font-semibold text-base overflow-x-auto">
+				<button disabled class="brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand">All</button>
+				<button class="brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand">Nike</button>
+				<button class="brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand">Adidas</button>
+				<button class="brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand">Puma</button>
+				<button class="brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand">Asics</button>
+				<button class="brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand">Reebok</button>
+				<button class="brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand">New&nbsp;Balance</button>
+				<button class="brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand">Converse</button>
+			</section>
+		</main>
+		<script type="module" src="src/main.js"></script>
+		<script type="module" src="src/home.js"></script>
+	</body>
+</html>

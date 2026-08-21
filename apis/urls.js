@@ -8,7 +8,6 @@ export let urls={
 	},
 	user:{
 		info:'/user',
-		delete:'/user'
 	},
 	sneaker:{
 		
