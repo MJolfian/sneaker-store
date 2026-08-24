@@ -1,5 +1,8 @@
 // JavaScript Document
 import {getUserInfo} from '../apis/user.js';
+import {getBrandNames} from '../apis/shoe-list.js';
+import {tokenName} from '../libs/constants.js';
+import {homeErrorHandler} from './home-error-handler.js';
 
 const time = new Date().getHours();
 let greeting = document.getElementById('greeting');
@@ -24,6 +27,8 @@ makeBellSvgDefaultState();
 makeHeartSvgDefaultState();
 makeSearchSvgDefaultState();
 
+if (!localStorage.getItem(tokenName)) location.href = '/login';
+
 switch(true){
 	case time >= 0 && time <= 11:
 		greeting.prepend('Good Morning');
@@ -39,9 +44,13 @@ switch(true){
 	   };
 
 const showNameOfUser = async () => {
-	const nameOfUser = await getUserInfo();
-	console.log(nameOfUser);
-	spanOfUserNameShow.textContent = `${nameOfUser.username}`;
+	try{
+		const nameOfUser = await getUserInfo();
+		spanOfUserNameShow.textContent = `${nameOfUser.username}`;
+	}catch(error){
+		homeErrorHandler(error);
+		console.log(error);
+	}
 }
 showNameOfUser();
 

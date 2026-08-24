@@ -10,6 +10,6 @@ export let urls={
 		info:'/user',
 	},
 	sneaker:{
-		
+		getShoeBrandNames: '/sneaker/brands',
 	}
 }

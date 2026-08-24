@@ -14,7 +14,7 @@ function showErrors(msg){
 		}
 	}
 	
-function clearErrors(){
+export function clearErrors(){
 	usernameErr.textContent='';
 	passwordErr.textContent='';
 	sysErr.textContent='';
@@ -24,7 +24,6 @@ function clearErrors(){
 }
 
 export const signUpErrorHandler = error => {  // to signup.js
-	clearErrors();
 	const msg=error.response?.data?.message;
 	 if (Array.isArray(msg)) msg.forEach(showErrors);
      else if (typeof msg === 'string') showErrors(msg);
@@ -32,10 +31,8 @@ export const signUpErrorHandler = error => {  // to signup.js
     };
 	
 export const loginErrorHandler = error => {  // to login.js
-	clearErrors();
 	const msg=error.response?.data?.message;
 	 if (Array.isArray(msg)) msg.forEach(showErrors);
      else if (typeof msg === 'string') showErrors(msg);
      else showErrors('Something Went Wrong');
     };
-	
