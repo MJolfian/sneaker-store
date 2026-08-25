@@ -10,7 +10,7 @@ let bellSvg = document.getElementById('bell-svg');
 let heartSvg = document.getElementById('heart-svg');
 let searchSvg = document.getElementById('search-svg');
 let searchInput = document.getElementById('search-input');
-const brands = Array.from(document.querySelectorAll('.brands'));
+const wrapperOfBrandNames = document.getElementById('wrapper-of-brand-names');
 let lastClickedBrandBtn = document.querySelectorAll('.brands')[0];
 const spanOfUserNameShow = document.getElementById('span-of-user-name-show');
 
@@ -54,6 +54,26 @@ const showNameOfUser = async () => {
 }
 showNameOfUser();
 
+function createRibbonOfBrands(brandName){
+	const addedBrand = document.createElement('button');
+	addedBrand.textContent = brandName;
+	addedBrand.classList = 'brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand text-nowrap';
+	wrapperOfBrandNames.append(addedBrand);
+	wrapperOfBrandNames.addEventListener('click', (event) => {
+		if (!event.target.classList.contains('brands')) return;
+		lastClickedBrandBtn.disabled = false;
+		event.target.disabled = true;
+		lastClickedBrandBtn = event.target;
+	})
+}
+
+
+const indicateBrandNames = async () => {
+	let arrayOfBrands = await getBrandNames();
+	arrayOfBrands.forEach(createRibbonOfBrands);
+}
+indicateBrandNames();
+
 
 searchInput.addEventListener('focus', () => {
 	searchSvg.classList.replace('text-cool-gray-600','text-black');
@@ -63,11 +83,3 @@ searchInput.addEventListener('blur',() => {
 		searchSvg.classList.replace('text-black','text-cool-gray-600');
 	}
 });
-
-brands.forEach(item=>{
-	item.addEventListener('click', () => {
-		lastClickedBrandBtn.disabled = false;
-		item.disabled = true;
-		lastClickedBrandBtn = item;
-	})
-})
