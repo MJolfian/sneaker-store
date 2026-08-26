@@ -1,6 +1,6 @@
 // JavaScript Document
 import {getUserInfo} from '../apis/user.js';
-import {getBrandNames} from '../apis/shoe-list.js';
+import {getBrandNames, getShoes} from '../apis/shoe-list.js';
 import {tokenName} from '../libs/constants.js';
 import {homeErrorHandler} from './home-error-handler.js';
 
@@ -12,6 +12,7 @@ let searchSvg = document.getElementById('search-svg');
 let searchInput = document.getElementById('search-input');
 const wrapperOfBrandNames = document.getElementById('wrapper-of-brand-names');
 let lastClickedBrandBtn = document.querySelectorAll('.brands')[0];
+const containerOfProductsSection = document.getElementById('container-of-products-section');
 const spanOfUserNameShow = document.getElementById('span-of-user-name-show');
 
 const makeBellSvgDefaultState=()=> bellSvg.innerHTML=`<path d="M10.5 22.0688C11.2956 22.0688 12.0587 21.7782 12.6213 21.2608C13.1839 20.7435 13.5 20.0418 13.5 19.3102H7.5C7.5 20.0418 7.81607 20.7435 8.37868 21.2608C8.94129 21.7782 9.70435 22.0688 10.5 22.0688ZM10.5 2.64538L9.3045 2.86745C7.94844 3.12152 6.7295 3.79863 5.85398 4.78417C4.97846 5.76971 4.50015 7.00315 4.5 8.27573C4.5 9.14193 4.299 11.3061 3.8115 13.4371C3.5715 14.495 3.2475 15.5971 2.817 16.5516H18.183C17.7525 15.5971 17.43 14.4964 17.1885 13.4371C16.701 11.3061 16.5 9.14193 16.5 8.27573C16.4995 7.00339 16.021 5.77028 15.1455 4.78502C14.2701 3.79976 13.0513 3.12285 11.6955 2.86883L10.5 2.644V2.64538ZM19.83 16.5516C20.1645 17.1681 20.5515 17.6564 21 17.9309H0C0.4485 17.6564 0.8355 17.1681 1.17 16.5516C2.52 14.0688 3 9.48952 3 8.27573C3 4.9378 5.58 2.15159 9.0075 1.51573C8.98656 1.32394 9.00958 1.13024 9.07505 0.947137C9.14052 0.76403 9.24701 0.595574 9.38763 0.452634C9.52826 0.309694 9.6999 0.195443 9.8915 0.11725C10.0831 0.0390565 10.2904 -0.00134277 10.5 -0.00134277C10.7096 -0.00134277 10.9169 0.0390565 11.1085 0.11725C11.3001 0.195443 11.4717 0.309694 11.6124 0.452634C11.753 0.595574 11.8595 0.76403 11.9249 0.947137C11.9904 1.13024 12.0134 1.32394 11.9925 1.51573C13.6879 1.83283 15.2121 2.67898 16.3069 3.9109C17.4016 5.14282 17.9998 6.68479 18 8.27573C18 9.48952 18.48 14.0688 19.83 16.5516Z" fill="#212529"/>`;
@@ -54,25 +55,39 @@ const showNameOfUser = async () => {
 }
 showNameOfUser();
 
-function createRibbonOfBrands(brandName){
-	const addedBrand = document.createElement('button');
-	addedBrand.textContent = brandName;
-	addedBrand.classList = 'brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand text-nowrap';
-	wrapperOfBrandNames.append(addedBrand);
-	wrapperOfBrandNames.addEventListener('click', (event) => {
-		if (!event.target.classList.contains('brands')) return;
-		lastClickedBrandBtn.disabled = false;
-		event.target.disabled = true;
-		lastClickedBrandBtn = event.target;
-	})
-}
-
-
 const indicateBrandNames = async () => {
 	let arrayOfBrands = await getBrandNames();
 	arrayOfBrands.forEach(createRibbonOfBrands);
 }
 indicateBrandNames();
+
+function createRibbonOfBrands(brandName){
+	const addedBrand = document.createElement('button');
+	addedBrand.textContent = brandName;
+	addedBrand.classList = 'brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand text-nowrap';
+	wrapperOfBrandNames.append(addedBrand);
+}
+
+wrapperOfBrandNames.addEventListener('click', async (event) => {
+		if (!event.target.classList.contains('brands')) return;
+		lastClickedBrandBtn.disabled = false;
+		event.target.disabled = true;
+		lastClickedBrandBtn = event.target;
+		const getBasedOnBrand = await getShoes( 1 , 10, '', event.target.textContent === 'All' ? '' : event.target.textContent);
+		console.log(getBasedOnBrand);
+		showProducts(getBasedOnBrand.data);
+	
+	})
+
+function showProducts(products){
+	products.forEach(item => {
+		const div = document.createElement('div');
+		const img = document.createElement('img');
+		
+	})
+}
+
+
 
 
 searchInput.addEventListener('focus', () => {
@@ -83,3 +98,5 @@ searchInput.addEventListener('blur',() => {
 		searchSvg.classList.replace('text-black','text-cool-gray-600');
 	}
 });
+
+
