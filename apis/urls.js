@@ -11,6 +11,7 @@ export let urls={
 	},
 	sneaker:{
 		getShoeBrandNames: '/sneaker/brands',
-		getShoes: (page = 1, limit = 10, search = '', brand='') => `/sneaker?page=${page}&limit=${limit}&search=${search}&brands=${brand}`
+		getShoes: (page = 1, limit = 10, search = '', brand='') => `/sneaker?page=${page}&limit=${limit}&search=${search}&brands=${brand}`,
+//		searchShoes: (page , 10, search = '')
 	}
 }

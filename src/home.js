@@ -6,6 +6,7 @@ import {homeErrorHandler} from './home-error-handler.js';
 
 const time = new Date().getHours();
 let greeting = document.getElementById('greeting');
+const paginationHintText = document.getElementById('pagination-hint');
 let bellSvg = document.getElementById('bell-svg');
 let heartSvg = document.getElementById('heart-svg');
 let searchSvg = document.getElementById('search-svg');
@@ -68,25 +69,103 @@ function createRibbonOfBrands(brandName){
 	wrapperOfBrandNames.append(addedBrand);
 }
 
-wrapperOfBrandNames.addEventListener('click', async (event) => {
-		if (!event.target.classList.contains('brands')) return;
-		lastClickedBrandBtn.disabled = false;
-		event.target.disabled = true;
-		lastClickedBrandBtn = event.target;
-		const getBasedOnBrand = await getShoes( 1 , 10, '', event.target.textContent === 'All' ? '' : event.target.textContent);
-		console.log(getBasedOnBrand);
-		showProducts(getBasedOnBrand.data);
-	
-	})
+let page = 1;
+let totalPages;
+let selectedBrand = '';
+let loading = false;
+
+const createProperlyReqBasedOnBrand = async () => {
+	if (page > totalPages){
+            observer.unobserve(paginationHintText);
+            return;
+        };
+	if(loading) return;
+	loading = true;
+	try{
+//		console.log(searchInput.value);
+		const getBasedOnBrand = await getShoes( page , 10, '', selectedBrand);
+        totalPages = getBasedOnBrand.totalPages;
+        console.log(getBasedOnBrand);
+        console.log(page);
+        showProducts(getBasedOnBrand.data);
+        page++;
+		 
+	}catch(error){
+		homeErrorHandler(error);
+	}finally{
+		loading = false;
+	}
+}
+
+createProperlyReqBasedOnBrand().then(() => {
+    setupObserver();
+});
+
+wrapperOfBrandNames.addEventListener('click', (event) => {
+    if (!event.target.classList.contains('brands')) return;
+
+    containerOfProductsSection.innerHTML = '';
+    lastClickedBrandBtn.disabled = false;
+    event.target.disabled = true;
+    lastClickedBrandBtn = event.target;
+
+    selectedBrand = event.target.textContent === 'All' ? '' : event.target.textContent;
+
+    page = 1;
+
+    // ابتدا صفحه اول را لود کن
+    createProperlyReqBasedOnBrand().then(() => {
+        // سپس Observer را فعال کن
+        setupObserver();
+    });
+});
+
+
+let observer;
+
+function setupObserver(){
+    if(observer) observer.disconnect();
+
+    observer = new IntersectionObserver((entries) => {
+//		console.log(entries);
+        entries.forEach(entry => {
+//			console.log(entry);
+            if(entry.isIntersecting && !loading){
+                createProperlyReqBasedOnBrand();
+            }
+        });
+    }, {
+        root: null,
+//        rootMargin: '200px',   // کاربر باید نزدیک انتهای صفحه باشد
+        threshold: 1           // کافیست کمی دیده شود
+    });
+
+    observer.observe(paginationHintText);
+//	console.log(observer);
+}
+
 
 function showProducts(products){
 	products.forEach(item => {
 		const div = document.createElement('div');
+		const innerDiv = document.createElement('div');
 		const img = document.createElement('img');
-		
+		const h3 = document.createElement('h3');
+		const p = document.createElement('p');
+		img.className = 'rounded-3xl aspect-square';
+		img.src = `${item.imageURL}`;
+		img.alt = `${item.brand}`;
+		div.classList = 'flex flex-col';
+		innerDiv.classList = 'grow flex flex-col justify-around';
+		h3.classList = 'font-bold text-[1.125rem]/none tracking-[-4%] text-title mt-3 mb-2 truncate sm:text-wrap sm:line-clamp-2';
+		h3.textContent = `${item.name}`;
+		p.className = 'text-title font-semibold text-base/none';
+		p.innerText = `$ ${item.price}`;
+		containerOfProductsSection.append(div);
+		div.append(img, innerDiv);
+		innerDiv.append(h3, p);
 	})
 }
-
 
 
 
@@ -99,4 +178,23 @@ searchInput.addEventListener('blur',() => {
 	}
 });
 
+let timeOut;
+export let recieveShoesBasedOnSearchWords;
+
+searchInput.addEventListener('input', () => {
+	clearTimeout(timeOut);
+	const searchValue = searchInput.value.trim();
+	
+	timeOut = setTimeout(async () => {
+		try{
+			page = 1;
+		console.log(searchValue);
+		recieveShoesBasedOnSearchWords = await getShoes(page, 10, searchValue);
+		console.log(recieveShoesBasedOnSearchWords);
+			showProducts(recieveShoesBasedOnSearchWords.data)
+	}catch(error){
+		homeErrorHandler(error);
+	}
+	}, 500);
+})
 
