@@ -33,8 +33,9 @@ searchInput.addEventListener('input', () => {
 	searchValue = searchInput.value;
 	timeOut = setTimeout(() => {
 		console.log(searchValue);
-		observer.disconnect();
+		observer?.disconnect();
 		page = 1;
+		parentDiv.remove();
 		getSneakersBasedOnSearchWords();
 		observer.observe(paginationHintText);
 	}, 500);
@@ -66,18 +67,16 @@ const getSneakersBasedOnSearchWords = async () => {
 }
 
 
-
 function showRecievedSneakers(shoesArray){
 	if(shoesArray.length === 0) notFoundImg.classList.remove('hidden');
 	
+	parentDiv = document.createElement('div');
 	shoesArray.forEach(item => {
-		const parentDiv = document.createElement('div');
 		const div = document.createElement('div');
 		const innerDiv = document.createElement('div');
 		const img = document.createElement('img');
 		const h3 = document.createElement('h3');
 		const p = document.createElement('p');
-		parentDiv.classList = 'parentDiv';
 		img.className = 'rounded-3xl aspect-square';
 		img.src = `${item.imageURL}`;
 		img.alt = `${item.brand}`;
@@ -87,8 +86,8 @@ function showRecievedSneakers(shoesArray){
 		h3.textContent = `${item.name}`;
 		p.className = 'text-title font-semibold text-base/none';
 		p.innerText = `$ ${item.price}`;
-		containerOfProductsSection.append(parentDiv);
-		parentDiv.appendChild(div);
+		containerOfProductsSection.append(div);
+		div.appendChild(div);
 		div.append(img, innerDiv);
 		innerDiv.append(h3, p);
 	})
