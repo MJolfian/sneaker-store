@@ -7,12 +7,35 @@
 		<title>Search</title>
 	</head>
 
-<body>
-	<main class="font-inter">
-		<header class="relative mx-[5.60vw] bg-input mt-[0.58vh]">
-			<input id="search-input" type="search" placeholder="Search" class="w-full pl-[34px] py-2 rounded-sm placeholder:text-sm/[150%] placeholder:font-normal placeholder:text-placeholder focus:outline-2 outline-black">
-			<svg id="search-svg" class="absolute left-[13px] top-[10.5px] text-cool-gray-600" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+<body class="">
+	<main class="font-inter px-[5.60vw]">
+		<header class="relative bg-input mt-[4vh] rounded-2xl">
+			<input id="search-input" type="search" placeholder="Search" class="w-full pl-[34px] py-3 rounded-2xl placeholder:text-sm/[150%] placeholder:font-normal placeholder:text-placeholder focus:outline-2 outline-black">
+			<svg id="search-svg" class="absolute left-[13px] top-[16px] text-cool-gray-600" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
 		</header>
+		<section class="flex justify-between mt-[2.17vh] font-semibold leading-[1] text-title border-b border-line pb-3">
+				<span class="text-[1.25rem]">Results for "zdf"</span>
+				<span class="text-base">0 found</span>
+			</section>
+		<section id="container-of-products-section" class="grid grid-cols-[repeat(auto-fit,minmax(182px,1fr))] justify-items-center justify-items-stretch gap-x-4 gap-y-6 mt-[1.74vh]">
+			<img id="not-found-img" class="w-100 hidden" src="/notfound.png" alt="not found">
+			<div class="space-y-5">
+				<div class="flex justify-between items-center">
+					<p class="text-greeting text-base font-medium">nike running</p>
+					<span class="text-[20px]/none text-[#787878] border-2 border-[#8a8a8a] pt-[1px] pb-1 px-[7px] rounded-[11px] cursor-pointer">×</span>
+				</div>
+				<div class="flex justify-between items-center">
+					<p class="text-greeting text-base font-medium">nike running</p>
+					<span class="text-[20px]/none text-[#787878] border-2 border-[#8a8a8a] pt-[1px] pb-1 px-[7px] rounded-[11px] cursor-pointer">×</span>
+				</div>
+				<div class="flex justify-between items-center">
+					<p class="text-greeting text-base font-medium">nike running</p>
+					<span class="text-[20px]/none text-[#787878] border-2 border-[#8a8a8a] pt-[1px] pb-1 px-[7px] rounded-[11px] cursor-pointer">×</span>
+				</div>
+				
+			</div>
+		</section>
+		<p id="pagination-hint" class="font-semibold text-sm/none tracking-[-4%] text-center mb-10 mt-4">Infinity Scrolling for Pagination</p>
 	</main>
 	<script type="module" src="src/main.js"></script>
 	<script type="module" src="src/search.js"></script>

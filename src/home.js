@@ -72,15 +72,15 @@ function createRibbonOfBrands(brandName){
 let page = 1;
 let totalPages;
 let selectedBrand = '';
-let loading = false;
+let isLoading = false;
 
 const createProperlyReqBasedOnBrand = async () => {
 	if (page > totalPages){
             observer.unobserve(paginationHintText);
             return;
         };
-	if(loading) return;
-	loading = true;
+	if(isLoading) return;
+	isLoading = true;
 	try{
 //		console.log(searchInput.value);
 		const getBasedOnBrand = await getShoes( page , 10, '', selectedBrand);
@@ -93,7 +93,7 @@ const createProperlyReqBasedOnBrand = async () => {
 	}catch(error){
 		homeErrorHandler(error);
 	}finally{
-		loading = false;
+		isLoading = false;
 	}
 }
 
@@ -121,30 +121,6 @@ wrapperOfBrandNames.addEventListener('click', (event) => {
 });
 
 
-let observer;
-
-function setupObserver(){
-    if(observer) observer.disconnect();
-
-    observer = new IntersectionObserver((entries) => {
-//		console.log(entries);
-        entries.forEach(entry => {
-//			console.log(entry);
-            if(entry.isIntersecting && !loading){
-                createProperlyReqBasedOnBrand();
-            }
-        });
-    }, {
-        root: null,
-//        rootMargin: '200px',   // کاربر باید نزدیک انتهای صفحه باشد
-        threshold: 1           // کافیست کمی دیده شود
-    });
-
-    observer.observe(paginationHintText);
-//	console.log(observer);
-}
-
-
 function showProducts(products){
 	products.forEach(item => {
 		const div = document.createElement('div');
@@ -167,6 +143,28 @@ function showProducts(products){
 	})
 }
 
+let observer;
+function setupObserver(){
+    if(observer) observer.disconnect();
+
+    observer = new IntersectionObserver((entries) => {
+//		console.log(entries);
+        entries.forEach(entry => {
+//			console.log(entry);
+            if(entry.isIntersecting && !isLoading){
+                createProperlyReqBasedOnBrand();
+            }
+        });
+    }, {
+        root: null,
+//        rootMargin: '200px',   // کاربر باید نزدیک انتهای صفحه باشد
+        threshold: 1           // کافیست کمی دیده شود
+    });
+
+    observer.observe(paginationHintText);
+//	console.log(observer);
+}
+
 
 
 searchInput.addEventListener('focus', () => {
@@ -179,22 +177,13 @@ searchInput.addEventListener('blur',() => {
 });
 
 let timeOut;
-export let recieveShoesBasedOnSearchWords;
-
+let searchValue;
 searchInput.addEventListener('input', () => {
 	clearTimeout(timeOut);
-	const searchValue = searchInput.value.trim();
-	
-	timeOut = setTimeout(async () => {
-		try{
-			page = 1;
-		console.log(searchValue);
-		recieveShoesBasedOnSearchWords = await getShoes(page, 10, searchValue);
-		console.log(recieveShoesBasedOnSearchWords);
-			showProducts(recieveShoesBasedOnSearchWords.data)
-	}catch(error){
-		homeErrorHandler(error);
-	}
+	searchValue = searchInput.value; // .trim() has removed from end of this line
+	timeOut = setTimeout(() => {
+		searchInput.value = '';
+		location.href = `/search?value=${searchValue}`;
 	}, 500);
 })
 

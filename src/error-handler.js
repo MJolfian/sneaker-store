@@ -1,7 +1,8 @@
 // JavaScript Document
 import {usernameErr, passwordErr, sysErr} from './auth-svg-handler.js';
 
-function showErrors(msg){	
+function showErrors(msg){
+		clearErrors();
 		if(msg.includes('username')){
 			usernameErr.classList.remove('hidden');
 			usernameErr.textContent += msg + '. ';
