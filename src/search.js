@@ -21,14 +21,15 @@ searchInput.value = searchValue;
 let observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) =>{
 		if(entry.isIntersecting && !isLoading) getSneakersBasedOnSearchWords();
-	},{threshold:1})
-});
+	})
+}, {threshold:1});
 observer.observe(paginationHintText);
 
 
 let timeOut;
 
 searchInput.addEventListener('input', () => {
+	console.log('input event')
 	clearTimeout(timeOut);
 	searchValue = searchInput.value;
 	timeOut = setTimeout(() => {
@@ -39,8 +40,10 @@ searchInput.addEventListener('input', () => {
 		containerOfProductsSection.querySelectorAll('.product-box').forEach(item => item.remove());
 		console.log('searchValue: '+searchValue,'  search his: '+searchHistory);
 		saveToSearchHistory();
+		removeHistory();
 		getSneakersBasedOnSearchWords();
 		observer.observe(paginationHintText);
+		setTimeout(() => searchInput.blur(), 3000);
 	}, 500);
 })
 
@@ -111,23 +114,39 @@ let showRecords = (historyArray) => {
 		wrapperDiv.className = 'hisWrapper absolute w-full bg-white pb-2 space-y-5';
 		containerOfProductsSection.append(wrapperDiv);
 		historyArray.forEach(item => {
-		wrapperDiv.insertAdjacentHTML('beforeend', `<div class="flex justify-between items-center">
+		wrapperDiv.insertAdjacentHTML('beforeend', `<div class="flex justify-between items-center cursor-pointer">
 					<p class="text-greeting text-base font-medium">${item}</p>
-					<span class="text-[20px]/none text-[#787878] border-2 border-[#8a8a8a] pt-[1px] pb-1 px-[7px] rounded-[11px] cursor-pointer">×</span>
-				</div>`)
-	})
-		notFoundImg.classList.add('hidden');
-	};
+					<span class="delete-his text-[20px]/none text-[#787878] border-2 border-[#8a8a8a] pt-[1px] pb-1 px-[7px] rounded-[11px] cursor-pointer">×</span>
+				</div>`);
+		const hisRow = wrapperDiv.lastElementChild;
+		hisRow.addEventListener('mousedown', (event) =>{
+		event.preventDefault();
+		if(event.target.closest('.delete-his')) return hisRow.remove();
+		
+		searchInput.value = item;
+		searchInput.dispatchEvent(new Event('input'));
+	});
+		
+})};
+		
+function removeHistory(){
+		const hisWrapper = containerOfProductsSection.querySelector('.hisWrapper');
+		if(hisWrapper) hisWrapper.remove();
+	}
+
+window.addEventListener('scroll', () => {
+		removeHistory();
+	});
 		
 searchInput.addEventListener('focus', () => {
 	searchSvg.classList.replace('text-cool-gray-600','text-black');
-//		console.log(JSON.parse(localStorage.getItem('searchHistory')))
+	removeHistory();
 	showRecords(searchHistory);
 })
+		
 searchInput.addEventListener('blur',() => {
 	if(searchInput.value === ''){
 		searchSvg.classList.replace('text-black','text-cool-gray-600');
 	}
-		const hisWrapper = containerOfProductsSection.querySelector('.hisWrapper');
-		if(hisWrapper) hisWrapper.remove();
+		removeHistory();
 });
