@@ -35,7 +35,10 @@ searchInput.addEventListener('input', () => {
 		console.log(searchValue);
 		observer?.disconnect();
 		page = 1;
-		parentDiv.remove();
+		totalPage = 1;
+		containerOfProductsSection.querySelectorAll('.product-box').forEach(item => item.remove());
+		console.log('searchValue: '+searchValue,'  search his: '+searchHistory);
+		saveToSearchHistory();
 		getSneakersBasedOnSearchWords();
 		observer.observe(paginationHintText);
 	}, 500);
@@ -68,9 +71,10 @@ const getSneakersBasedOnSearchWords = async () => {
 
 
 function showRecievedSneakers(shoesArray){
-	if(shoesArray.length === 0) notFoundImg.classList.remove('hidden');
+	if(shoesArray.length === 0) return notFoundImg.classList.remove('hidden');
 	
-	parentDiv = document.createElement('div');
+		notFoundImg.classList.add('hidden');
+	
 	shoesArray.forEach(item => {
 		const div = document.createElement('div');
 		const innerDiv = document.createElement('div');
@@ -78,27 +82,52 @@ function showRecievedSneakers(shoesArray){
 		const h3 = document.createElement('h3');
 		const p = document.createElement('p');
 		img.className = 'rounded-3xl aspect-square';
-		img.src = `${item.imageURL}`;
-		img.alt = `${item.brand}`;
-		div.classList = 'flex flex-col';
+		img.src = item.imageURL;
+		img.alt = item.brand;
+		div.classList = 'product-box flex flex-col';
 		innerDiv.classList = 'grow flex flex-col justify-around';
 		h3.classList = 'font-bold text-[1.125rem]/none tracking-[-4%] text-title mt-3 mb-2 truncate sm:text-wrap sm:line-clamp-2';
-		h3.textContent = `${item.name}`;
+		h3.textContent = item.name;
 		p.className = 'text-title font-semibold text-base/none';
-		p.innerText = `$ ${item.price}`;
+		p.innerText = '$ ' + item.price;
 		containerOfProductsSection.append(div);
-		div.appendChild(div);
 		div.append(img, innerDiv);
 		innerDiv.append(h3, p);
-	})
+	});
 }
 
+let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+function saveToSearchHistory(){
+		if(searchValue.trim() === '') return;
+    searchHistory = searchHistory.filter(item => item !== searchValue);
+    searchHistory.unshift(searchValue);
+    searchHistory = searchHistory.slice(0, 10);
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
+}
+
+let showRecords = (historyArray) => {
+		const wrapperDiv = document.createElement('div');
+		wrapperDiv.className = 'hisWrapper absolute w-full bg-white pb-2 space-y-5';
+		containerOfProductsSection.append(wrapperDiv);
+		historyArray.forEach(item => {
+		wrapperDiv.insertAdjacentHTML('beforeend', `<div class="flex justify-between items-center">
+					<p class="text-greeting text-base font-medium">${item}</p>
+					<span class="text-[20px]/none text-[#787878] border-2 border-[#8a8a8a] pt-[1px] pb-1 px-[7px] rounded-[11px] cursor-pointer">×</span>
+				</div>`)
+	})
+		notFoundImg.classList.add('hidden');
+	};
+		
 searchInput.addEventListener('focus', () => {
 	searchSvg.classList.replace('text-cool-gray-600','text-black');
+//		console.log(JSON.parse(localStorage.getItem('searchHistory')))
+	showRecords(searchHistory);
 })
 searchInput.addEventListener('blur',() => {
 	if(searchInput.value === ''){
 		searchSvg.classList.replace('text-black','text-cool-gray-600');
 	}
+		const hisWrapper = containerOfProductsSection.querySelector('.hisWrapper');
+		if(hisWrapper) hisWrapper.remove();
 });
-
