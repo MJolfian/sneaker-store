@@ -5,6 +5,8 @@ import {homeErrorHandler} from './home-error-handler.js';
 let searchInput = document.getElementById('search-input');
 let searchSvg = document.getElementById('search-svg');
 const notFoundImg = document.getElementById('not-found-img');
+let searchWordSpan = document.getElementById('search-word-span');
+let numOfFoundResults = document.getElementById('num-of-found-results');
 const paginationHintText = document.getElementById('pagination-hint');
 let containerOfProductsSection = document.getElementById('container-of-products-section');
 
@@ -29,11 +31,9 @@ observer.observe(paginationHintText);
 let timeOut;
 
 searchInput.addEventListener('input', () => {
-	console.log('input event')
 	clearTimeout(timeOut);
 	searchValue = searchInput.value;
 	timeOut = setTimeout(() => {
-		console.log(searchValue);
 		observer?.disconnect();
 		page = 1;
 		totalPage = 1;
@@ -43,7 +43,7 @@ searchInput.addEventListener('input', () => {
 		removeHistory();
 		getSneakersBasedOnSearchWords();
 		observer.observe(paginationHintText);
-		setTimeout(() => searchInput.blur(), 3000);
+//		setTimeout(() => searchInput.blur(), 2000);
 	}, 500);
 })
 
@@ -74,9 +74,14 @@ const getSneakersBasedOnSearchWords = async () => {
 
 
 function showRecievedSneakers(shoesArray){
-	if(shoesArray.length === 0) return notFoundImg.classList.remove('hidden');
+	if(shoesArray.length === 0){
+		searchInput.blur();
+		return notFoundImg.classList.remove('hidden');
+	}
 	
 		notFoundImg.classList.add('hidden');
+		searchWordSpan.textContent = `Results for "${searchValue}"`;
+		numOfFoundResults.innerText = shoesArray.length + ' found';
 	
 	shoesArray.forEach(item => {
 		const div = document.createElement('div');
@@ -121,13 +126,25 @@ let showRecords = (historyArray) => {
 		const hisRow = wrapperDiv.lastElementChild;
 		hisRow.addEventListener('mousedown', (event) =>{
 		event.preventDefault();
-		if(event.target.closest('.delete-his')) return hisRow.remove();
+		if(event.target.closest('.delete-his')){
+		hisRow.remove();
+		console.log(searchHistory);
+		searchHistory.forEach(hisItem =>{
+		if(hisItem === item){
+		searchHistory.splice(searchHistory.indexOf(hisItem),1); // we could do this with filter() method too.
+		console.log(searchHistory);
+	}
+	})
+		saveToSearchHistory();
+	return;
+	}
 		
 		searchInput.value = item;
 		searchInput.dispatchEvent(new Event('input'));
 	});
 		
-})};
+});
+	};
 		
 function removeHistory(){
 		const hisWrapper = containerOfProductsSection.querySelector('.hisWrapper');
@@ -135,7 +152,7 @@ function removeHistory(){
 	}
 
 window.addEventListener('scroll', () => {
-		removeHistory();
+		searchInput.blur();
 	});
 		
 searchInput.addEventListener('focus', () => {
