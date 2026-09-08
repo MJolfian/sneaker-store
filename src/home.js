@@ -6,6 +6,8 @@ import {homeErrorHandler} from './home-error-handler.js';
 
 const time = new Date().getHours();
 let greeting = document.getElementById('greeting');
+let allBtn = document.getElementById('all-btn');
+const seeAllSpan = document.getElementById('see-all-span');
 const paginationHintText = document.getElementById('pagination-hint');
 let bellSvg = document.getElementById('bell-svg');
 let heartSvg = document.getElementById('heart-svg');
@@ -187,3 +189,18 @@ searchInput.addEventListener('input', () => {
 	}, 500);
 })
 
+seeAllSpan.addEventListener('click', () => {
+	 containerOfProductsSection.innerHTML = '';
+
+    lastClickedBrandBtn.disabled = false;
+	allBtn.disabled = true;
+	lastClickedBrandBtn = allBtn;
+    selectedBrand = '';
+
+    page = 1;
+    totalPages = undefined;
+
+    createProperlyReqBasedOnBrand().then(() => {
+        setupObserver();
+    });
+})

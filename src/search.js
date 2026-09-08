@@ -16,7 +16,7 @@ const makeSearchSvgDefaultState = () => searchSvg.innerHTML=`<path d="M11.742 10
 makeSearchSvgDefaultState();
 
 const params = new URLSearchParams(location.search);
-let searchValue = params.get('value');
+let searchValue = params.get('value') ?? '';
 //console.log(searchValueFromHomePage)
 searchInput.value = searchValue;
 
@@ -51,6 +51,7 @@ searchInput.addEventListener('input', () => {
 let isLoading = false;
 let page = 1;
 let totalPage;
+let totalFoundItem;
 
 const getSneakersBasedOnSearchWords = async () => {
 	if (page > totalPage){
@@ -61,6 +62,7 @@ const getSneakersBasedOnSearchWords = async () => {
 	isLoading = true;
 	try{
 		const res = await getShoes(page, 10, searchValue);
+		totalFoundItem = res.total;
 		totalPage = res.totalPages;
 		console.log(res);
 		showRecievedSneakers(res.data);
@@ -74,14 +76,14 @@ const getSneakersBasedOnSearchWords = async () => {
 
 
 function showRecievedSneakers(shoesArray){
+		searchWordSpan.textContent = `Results for "${searchValue}"`;
+		numOfFoundResults.innerText = totalFoundItem + ' found';
 	if(shoesArray.length === 0){
 		searchInput.blur();
 		return notFoundImg.classList.remove('hidden');
 	}
 	
 		notFoundImg.classList.add('hidden');
-		searchWordSpan.textContent = `Results for "${searchValue}"`;
-		numOfFoundResults.innerText = shoesArray.length + ' found';
 	
 	shoesArray.forEach(item => {
 		const div = document.createElement('div');
@@ -113,8 +115,10 @@ function saveToSearchHistory(){
     searchHistory = searchHistory.slice(0, 10);
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
 }
+saveToSearchHistory();
 
 let showRecords = (historyArray) => {
+		if(historyArray.length === 0) return;
 		const wrapperDiv = document.createElement('div');
 		wrapperDiv.className = 'hisWrapper absolute w-full bg-white pb-2 space-y-5';
 		containerOfProductsSection.append(wrapperDiv);
@@ -131,11 +135,11 @@ let showRecords = (historyArray) => {
 		console.log(searchHistory);
 		searchHistory.forEach(hisItem =>{
 		if(hisItem === item){
-		searchHistory.splice(searchHistory.indexOf(hisItem),1); // we could do this with filter() method too.
+		searchHistory.splice(searchHistory.indexOf(hisItem),1); // we could do this with filter() method too.  searchHistory = searchHistory.filter(hisItem => hisItem !== item);
 		console.log(searchHistory);
 	}
 	})
-		saveToSearchHistory();
+		localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 	return;
 	}
 		

@@ -12,3 +12,8 @@ export async function getShoes(page = 1, limit = 10, search = '', brand=''){  //
 	const response = await axiosInstance.get(urls.sneaker.getShoes(page,limit, search, brand));
 	return response.data;
 }
+
+export const getShoeItem = async function(id){
+	const response = await generateHttpClient().get(urls.sneaker.getShoeItem(id));
+	return response.data;
+}
