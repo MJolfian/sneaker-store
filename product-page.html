@@ -9,13 +9,13 @@
 	</head>
 
 <body class="font-inter">
-	<header class="h-[45vh] overflow-hidden">
-		<img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-5cc7de3b-2afc-49c2-a1e4-0508997d09e6/react-miler-mens-running-shoe-DgF6nr.jpg" alt="shoe pic" class="w-full h-full object-cover object-center">
-		<img src="public/leftArrow.svg" alt="back" class="absolute top-[2.26%] left-[3.45%] cursor-pointer">
+	<header class="h-[40vh] overflow-hidden">
+		<img id="product-img" src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-5cc7de3b-2afc-49c2-a1e4-0508997d09e6/react-miler-mens-running-shoe-DgF6nr.jpg" alt="shoe pic" class="w-full h-full object-cover object-center">
+		<img id="back-icon" src="public/leftArrow.svg" alt="back" onClick="goBack" class="absolute top-[2.26%] left-[3.45%] cursor-pointer">
 	</header>
 	<main class="px-[5.60vw]">
 		<div class="flex justify-between items-center my-2">
-			<span class="font-semibold text-[2rem]/[100%]">Running Sportwear</span>
+			<span id="product-name" class="font-semibold text-[2rem]/[100%] line-clamp-2">Running Sportwear</span>
 			<img src="public/heart-icon.svg" alt="favorite">
 		</div>
 		<div class="border-b border-line pb-5 mt-3">
@@ -23,12 +23,52 @@
 			<i class="fa-solid fa-star-half-stroke ml-2"></i>
 			<span class="text-sm">4.3 (5,389 reviews)</span>
 		</div>
-		<div>
-			<h5 class="font-semibold text-lg">Description</h5>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error perspiciatis praesentium, recusandae doloribus a hic excepturi laboriosam. Illo voluptate a possimus tenetur eius aspernatur, magni, atque ipsa error natus, quas.</p>
+		<div class="mt-2">
+			<h5 class="font-semibold text-lg my-1">Description</h5>
+			<p class="line-clamp-2 text-sm font-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error perspiciatis praesentium, recusandae doloribus a hic excepturi laboriosam. Illo voluptate a possimus tenetur eius aspernatur, magni, atque ipsa error natus, quas.</p>
 		</div>
 	</main>
-	
+	<section class="ml-[5.60vw] mt-1 flex gap-x-6 overflow-x-auto">
+		<div>
+			<h4 class='font-semibold my-1'>Size</h4>
+			<div class="flex justify-between gap-x-2 text-size">
+				<div class='cursor-pointer rounded-full border-2 border-size text-sm/none w-8 aspect-square tracking-[-4%] flex justify-center items-center'>40</div>
+				<div class='cursor-pointer rounded-full border-2 border-size text-sm/none w-8 aspect-1/1 tracking-[-4%] flex justify-center items-center'>41</div>
+				<div class='cursor-pointer rounded-full border-2 border-black text-sm/none w-8 text-white bg-black aspect-square tracking-[-4%] flex justify-center items-center'>42</div>
+			</div>
+		</div>
+		<div>
+			<h4 class='font-semibold my-1'>Color</h4>
+			<div class="flex justify-between gap-x-2">
+				<div class='cursor-pointer rounded-full text-lg/none w-8 aspect-square bg-[#1a96f0] flex justify-center items-center font-black'>✓</div>
+				<div class='cursor-pointer rounded-full text-sm/none w-8 aspect-square bg-[#7a5448]'></div>
+				<div class='cursor-pointer rounded-full text-sm/none w-8 aspect-square bg-[#9d28ac]'></div>
+				<div class='cursor-pointer rounded-full text-sm/none w-8 aspect-square bg-[#607d8a]'></div>
+				<div class='cursor-pointer rounded-full text-sm/none w-8 aspect-square bg-[#f3f3f3]'></div>
+				<div class='cursor-pointer rounded-full text-sm/none w-8 aspect-square bg-pink-600'></div>
+				<div class='cursor-pointer rounded-full text-sm/none w-8 aspect-square bg-green-800'></div>
+				<div class='cursor-pointer rounded-full text-sm/none w-8 aspect-square bg-yellow-500'></div>
+			</div>
+		</div>
+	</section>
+	<section class="flex items-center gap-x-6 mx-[5.60vw] mt-4 border-b border-line pb-5">
+		<span class="font-semibold text-lg">Quantity</span>
+		<div class="flex items-center bg-[#f3f3f3] rounded-full px-5 py-2">
+			<button class='cursor-pointer text-title font-bold text-lg'>–</button>
+			<span class='text-title font-bold text-lg px-6'>1</span>
+			<button class='cursor-pointer text-title font-bold text-lg'>+</button>
+		</div>
+	</section>
+	<footer class="flex justify-between my-5 mx-[5.60vw]">
+	<div>
+			<span class='text-greeting text-xs'>Total price</span>
+			<h4 id="product-price" class="font-bold text-xl tracking-[-4%]">$</h4>
+		</div>
+		<button class="flex justify-center items-center gap-x-2 bg-[#101010] text-white text-sm font-bold px-15 cursor-pointer shadow-add-to-cart-btn rounded-full">
+			<svg id="add-to-cart-icon" class="" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+			Add to Cart
+		</button>
+	</footer>
 	<script type="module" src="src/main.js"></script>
 	<script type="module" src="src/product-page.js"></script>
 </body>
