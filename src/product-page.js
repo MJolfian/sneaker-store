@@ -1,12 +1,20 @@
-// JavaScript Document
+// product-page.js
 import {getShoeItem} from '../apis/shoe-list.js';
 import {homeErrorHandler} from './home-error-handler.js';
+import {addToCart, saveCart} from './cart.js';
 
 const addToCartSvg = document.getElementById('add-to-cart-icon');
+const addToCartBtn = document.getElementById('add-to-cart-btn');
 const backIcon = document.getElementById('back-icon');
 const productImg = document.getElementById('product-img');
 const productName = document.getElementById('product-name');
 const productPrice = document.getElementById('product-price');
+const plusBtn = document.getElementById('plus-btn');
+const minusBtn = document.getElementById('minus-btn');
+const quantitySpan = document.getElementById('quantity-span');
+
+let quantity = 1;
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 addToCartSvg.innerHTML = `<path d="M7 8.2C6.2 8.5 5.7 9.2 5.6 10.1L4.7 17.8C4.5 19.5 5.8 20.8 7.5 20.8H16.5C18.2 20.8 19.5 19.5 19.3 17.8L18.4 10.1C18.3 9.2 17.8 8.5 17 8.2C15.7 7.7 14.3 7.5 12 7.5C9.7 7.5 8.3 7.7 7 8.2Z"
     			fill="currentColor"/>
@@ -19,9 +27,10 @@ backIcon.addEventListener('click', () => history.back());
 const params = new URLSearchParams(location.search);
 const pid = params.get('pid');
 
+let res;
 async function getShoe(pid){
 	try{
-		const res = await getShoeItem(pid);
+		res = await getShoeItem(pid);
 		showProduct(res);
 		console.log(res)
 	}catch(error){
@@ -36,3 +45,21 @@ const showProduct = ({imageURL, name, price}) => {
 	productName.innerText = name;
 	productPrice.append(price);
 }
+
+plusBtn.addEventListener('click', () => {
+	quantity++;
+	quantitySpan.textContent = quantity;
+})
+
+minusBtn.addEventListener('click', () => {
+	if(quantity > 1){
+		quantity--;
+		quantitySpan.textContent = quantity;
+	}
+})
+
+addToCartBtn.addEventListener('click', () => {
+	addToCart({...res,
+        quantity
+    });
+})

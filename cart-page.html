@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" type="image/svg+xml" href="/shoe.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cart</title>
+	</head>
+
+<body class="font-inter">
+	<header class="flex justify-between items-center my-5 mx-[5.60vw]">
+		<div class="flex items-center gap-x-5">
+			<img src="authLogo.svg" alt="logo" class="w-6">
+			<span class="font-bold text-3xl">My Cart</span>
+		</div>
+		<img src="/search-icon.svg" alt="search" width="20px">
+	</header>
+	<main id="main" class="mx-[5.60vw] flex flex-col gap-y-4 pt-4 pb-40">
+		<div class="flex gap-x-2 p-4 rounded-3xl shadow-cart">
+			<div class="basis-35/100 shrink-0">
+				<img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9dda6202-e2ff-4711-9a09-0fcb7d90c164/mercurial-vapor-13-elite-fg-firm-ground-soccer-cleat-14MsF2.jpg" alt="shoe" class="rounded-3xl">
+			</div>
+			<div class="flex flex-col justify-around basis-65/100 min-w-0">
+				<div class="flex justify-between">
+					<h4 class="font-bold text-[1.125rem]/none tracking-[-4%] text-title truncate">Running Sportwear</h4>
+					<img src="public/trash.svg" alt="trash">
+				</div>
+				<div class="flex items-center text-sm text-[#434343] gap-x-1">
+					<div class="bg-gray-600 size-4 rounded-full"></div>
+					<span>Gray | size = 41</span>
+				</div>
+				<div class="flex justify-between items-center">
+					<span class="font-semibold text-lg tracking-[-4%]">$105.00</span>
+					<div class="flex items-center bg-[#f3f3f3] rounded-full px-5 py-2">
+						<button class='cursor-pointer text-title font-medium text-base'>–</button>
+							<span class='text-title font-medium text-base px-6'>1</span>
+						<button class='cursor-pointer text-title font-medium text-base'>+</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</main>
+	<section class="hidden flex flex-col justify-end w-dvw h-dvh bg-gray-500/70 z-1 fixed inset-0">
+		<div class="bg-white rounded-t-4xl px-[5.60vw]">
+			<hr class="w-7 mx-auto mt-1 border-2 border-gray-500 rounded-full">
+			<h3 class="text-center font-bold text-xl py-4 my-5 border-b border-line">Remove From Cart?</h3>
+			<div>
+				<div class="flex gap-x-2 p-4 my-6 rounded-3xl shadow-cart">
+				<div class="basis-35/100 shrink-0">
+					<img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9dda6202-e2ff-4711-9a09-0fcb7d90c164/mercurial-vapor-13-elite-fg-firm-ground-soccer-cleat-14MsF2.jpg" alt="shoe" class="rounded-3xl">
+				</div>
+				<div class="flex flex-col justify-around basis-65/100 min-w-0">
+					<div class="flex justify-between">
+						<h4 class="font-bold text-[1.125rem]/none tracking-[-4%] text-title truncate">Running Sportwear</h4>
+					</div>
+					<div class="flex items-center text-sm text-[#434343] gap-x-1">
+						<div class="bg-gray-600 size-4 rounded-full"></div>
+						<span>Gray | size = 41</span>
+					</div>
+					<div class="flex justify-between items-center">
+						<span class="font-semibold text-lg tracking-[-4%]">$105.00</span>
+						<div class="flex items-center bg-[#f3f3f3] rounded-full px-5 py-2">
+							<button class='cursor-pointer text-title font-medium text-base'>–</button>
+							<span class='text-title font-medium text-base px-6'>1</span>
+							<button class='cursor-pointer text-title font-medium text-base'>+</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="flex justify-between border-t border-line py-5">
+				<button class="w-[180px] bg-[#e7e7e7] text-[#101010] text-sm font-bold px-10 py-4 cursor-pointer rounded-full">Cancel</button>
+				<button class="w-[180px] bg-[#101010] text-white text-sm font-bold px-10 py-4 cursor-pointer rounded-full">Yes, Remove</button>
+			</div>
+		</div>
+	</section>
+	<footer class="px-[5.60vw] pb-5 rounded-t-4xl shadow-cart fixed bottom-0 inset-x-0 bg-gray-200/40 backdrop-blur-lg border-t border-white/50">
+		<section class="flex justify-between my-5">
+			<div>
+				<span class='text-greeting text-xs'>Total price</span>
+				<h4 id="product-price" class="font-bold text-xl tracking-[-4%]">$585.00</h4>
+			</div>
+			<button class="flex justify-center items-center gap-x-3 bg-[#101010] text-white text-sm font-bold px-15 cursor-pointer shadow-add-to-cart-btn rounded-full">
+				Checkout
+				<svg id="check-out" width="19" height="48" viewBox="0 0 46 48" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+			</button>
+		</section>
+		<div class="flex justify-around items-baseline text-title sm:max-w-100 sm:mx-auto">
+			<div class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-fit' src="/home-icon.svg" alt="home"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">Home</span></div>
+			<div class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-[26px]' src="cart-filled-icon.svg" alt="cart"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">Cart</span></div>
+			<div class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-fit' src="/orders-icon.svg" alt="orders"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">Orders</span></div>
+			<div class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-fit' src="/wallet-icon.svg" alt="wallet"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">wallet</span></div>
+			<div class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-fit' src="/profile-icon.svg" alt="profile"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">Profile</span></div>
+		</div>
+	</footer>
+	
+	<script type="module" src="src/main.js"></script>
+	<script type="module" src="src/cart-page.js"></script>
+</body>
+</html>

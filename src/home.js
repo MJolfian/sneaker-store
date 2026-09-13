@@ -133,7 +133,8 @@ function showProducts(products){
 		img.className = 'rounded-3xl aspect-square';
 		img.src = `${item.imageURL}`;
 		img.alt = `${item.brand}`;
-		div.classList = 'flex flex-col';
+		div.classList = 'product-box cursor-pointer flex flex-col';
+		div.setAttribute('data-pid', item.pid); // or: div.dataset.pid = item.pid;
 		innerDiv.classList = 'grow flex flex-col justify-around';
 		h3.classList = 'font-bold text-[1.125rem]/none tracking-[-4%] text-title mt-3 mb-2 truncate sm:text-wrap sm:line-clamp-2';
 		h3.textContent = `${item.name}`;
@@ -144,6 +145,13 @@ function showProducts(products){
 		innerDiv.append(h3, p);
 	})
 }
+
+containerOfProductsSection.addEventListener('click', (event) => {
+	const productBox = event.target.closest('.product-box');
+	if(!productBox) return;
+		const pid = productBox.dataset.pid;
+		location.href = `/product-page?pid=${pid}`;
+})
 
 let observer;
 function setupObserver(){
