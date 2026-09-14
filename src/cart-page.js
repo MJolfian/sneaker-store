@@ -32,7 +32,7 @@ function renderCart(){
 		const itemTotal = item.quantity * item.price;
 		containerOfCartItems.insertAdjacentHTML('beforeend', `<div data-pid='${item.pid}' class="cart-item flex gap-x-2 p-4 rounded-3xl shadow-cart">
 			<div class="basis-35/100 shrink-0">
-				<img src="${item.imageURL}" alt="shoe" class="rounded-3xl">
+				<img src="${item.imageURL}" alt="shoe" class="aspect-1/1 rounded-3xl">
 			</div>
 			<div class="flex flex-col justify-around basis-65/100 min-w-0">
 				<div class="flex justify-between">
@@ -96,7 +96,7 @@ const renderDeleteModal = (pid) => {
 	const itemTotalPrice = item.quantity * item.price;
 	parentDivInDeleteModal.innerHTML = `<div class="flex gap-x-2 p-4 my-6 rounded-3xl shadow-cart">
 				<div class="basis-35/100 shrink-0">
-					<img src="${item.imageURL}" alt="shoe" class="rounded-3xl">
+					<img src="${item.imageURL}" alt="shoe" class="aspect-square rounded-3xl">
 				</div>
 				<div class="flex flex-col justify-around basis-65/100 min-w-0">
 					<div class="flex justify-between">
