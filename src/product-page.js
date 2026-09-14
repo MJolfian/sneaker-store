@@ -2,6 +2,7 @@
 import {getShoeItem} from '../apis/shoe-list.js';
 import {homeErrorHandler} from './home-error-handler.js';
 import {addToCart, saveCart} from './cart.js';
+import {showToast} from './show-toast.js';
 
 const addToCartSvg = document.getElementById('add-to-cart-icon');
 const addToCartBtn = document.getElementById('add-to-cart-btn');
@@ -28,9 +29,11 @@ const params = new URLSearchParams(location.search);
 const pid = params.get('pid');
 
 let res;
+let price;
 async function getShoe(pid){
 	try{
 		res = await getShoeItem(pid);
+		price = res.price;
 		showProduct(res);
 		console.log(res)
 	}catch(error){
@@ -40,21 +43,28 @@ async function getShoe(pid){
 }
 getShoe(pid);
 
-const showProduct = ({imageURL, name, price}) => {
+const showProduct = ({imageURL, name}) => {
 	productImg.src = imageURL;
 	productName.innerText = name;
-	productPrice.append(price);
+	refreshTotalPrice();
+}
+
+function refreshTotalPrice(){
+	const totalPrice = quantity * price;
+	productPrice.textContent = '$' + totalPrice;
 }
 
 plusBtn.addEventListener('click', () => {
 	quantity++;
 	quantitySpan.textContent = quantity;
+	refreshTotalPrice();
 })
 
 minusBtn.addEventListener('click', () => {
 	if(quantity > 1){
 		quantity--;
 		quantitySpan.textContent = quantity;
+		refreshTotalPrice();
 	}
 })
 
@@ -62,4 +72,5 @@ addToCartBtn.addEventListener('click', () => {
 	addToCart({...res,
         quantity
     });
+	showToast("Product added to cart successfully", 'success');
 })
