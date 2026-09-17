@@ -11,7 +11,7 @@ export const clearErrors = (titleError, addressError) => {
 export function errorHandler(titleValue, addressValue, titleError, addressError){
 	clearErrors(titleError, addressError);
 	const address = getAddress();
-	const existingAddress = address.find(item => item.totalAddress === addressValue);
+	const existingAddress = address.find(item => item.total === addressValue);
 	const existingTitle = address.find(item => item.title === titleValue);
 	
 	if(titleValue === ''){
