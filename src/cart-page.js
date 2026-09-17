@@ -1,5 +1,5 @@
 // JavaScript Document
-import {addToCart, saveCart, getCart, getCartTotalPrice, increaseQuantity, decreaseQuantity, removeFromCart} from './cart.js';
+import {getCart, getCartTotalPrice, increaseQuantity, decreaseQuantity, removeFromCart} from './cart.js';
 import {showToast} from './show-toast.js';
 
 const checkoutIcon = document.getElementById('check-out');
@@ -54,13 +54,10 @@ function renderCart(){
 			</div>
 		</div>`)
 	}
-	refreshCartTotalPrice();
+	totalPriceOfCart.textContent = '$' + getCartTotalPrice();
 }
 renderCart();
 
-function refreshCartTotalPrice(){
-	totalPriceOfCart.textContent = '$' + getCartTotalPrice();
-}
 
 containerOfCartItems.addEventListener('click', (event) => {
 	const cartItem = event.target.closest('.cart-item');
