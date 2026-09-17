@@ -36,7 +36,7 @@ const renderAddresses = () => {
                 <p class="text-sm text-gray-500">${item.total}</p>
             </div>
         </div>
-		<input type="radio" name="address" value='${item.id}' ${item.isDefault ? 'checked' : ''} class="size-4 accent-radio">
+		<input type="radio" name="address" value='${item.id}' ${item.isDefault ? 'checked' : ''} class="size-4 accent-radio cursor-pointer">
     </label>`)
 	})
 }
@@ -73,3 +73,18 @@ dialogCloseBtn.addEventListener('click', () => {
 	totalAddressInputOfNewAddressModal.value = '';
 	newAddressSection.classList.add('hidden');
 })
+
+wrapper.addEventListener('change', (event) => {
+    if (event.target.type !== 'radio') return;
+
+    const selectedId = Number(event.target.value);
+    const address = getAddress();
+
+    address.forEach(item => {
+        item.isDefault = item.id === selectedId;
+    });
+
+    saveAddress();
+
+    renderAddresses();
+});
