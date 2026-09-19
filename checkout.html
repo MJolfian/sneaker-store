@@ -7,18 +7,55 @@
 		<title>Checkout</title>
 	</head>
 <body class="font-inter">
-	<header class="flex items-center mx-[5.60vw] gap-x-4 mt-4 mb-7">
+	<header class="flex items-center mx-[5.60vw] gap-x-4 mt-4 mb-8">
 		<img src="leftArrow.svg" alt="back">
 		<span class="text-[1.5rem]/[100%] font-semibold text-title">Checkout</span>
 		<img class="ml-auto w-6" src="public/option-icon.svg" alt="option">
 	</header>
-	<main class="mx-[5.60vw]">
-		<h3 class="text-lg/[100%] font-semibold text-title my-5">Shipping Address</h3>
-		<div id="wrapper">
-			
-		</div>
+	<main class="mx-[5.60vw] mb-25">
+		<h3 class="text-lg/[100%] font-semibold text-title my-6">Shipping Address</h3>
 		<button id="addNewAddressBtn" class="hidden text-radio font-semibold bg-gray-200 w-full py-4 rounded-full cursor-pointer">Add New Address</button>
+		<div id="wrapper">	
+		</div>
+		<hr class="border-line my-6">
+		<h3 class="text-lg/[100%] font-semibold text-title mb-6 mt-7">Order List</h3>
+		<div id="order-wrapper" class="flex flex-col gap-y-4 pt-4 pb-6 mb-6 border-b border-line"></div>
+		<h3 class="text-lg/[100%] font-semibold text-title my-6">Choose Shipping</h3>
+		<div id="choose-shipping-type" class="hidden flex items-center shadow-cart p-5 gap-x-3 font-semibold rounded-3xl cursor-pointer">
+			<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    			<path d="M3 6H15V17H3V6Z" fill="currentColor"/>
+				<path d="M15 10H18L21 13V17H15V10Z" fill="currentColor"/>
+				<circle cx="7" cy="17" r="2" fill="white" stroke='black'/>
+				<circle cx="18" cy="17" r="2" fill="white" stroke='black'/>
+			</svg>
+			<p class="self-end">Choose Shipping Type</p>
+			<svg class="ml-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    			<path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		</div>
+		<div id="shipping-type-wrapper"></div>
+		<hr class="border-line my-6">
+		<h3 class="text-lg/[100%] font-semibold text-title my-6">Promo Code</h3>
+		<div class="flex justify-between items-center gap-x-7 mb-5">
+			<input value="" id="search-input" type="search" placeholder="Enter Promo Code" class="w-full pl-4 py-3 rounded-2xl bg-gray-100/50 placeholder:text-sm/[150%] placeholder:font-normal placeholder:text-placeholder focus:outline-2 outline-black">
+			<button class="text-white bg-radio rounded-full aspect-1/1 px-4 cursor-pointer">+</button>
+		</div>
+		<div class="grid grid-cols-2 shadow-cart rounded-3xl p-5 text-gray-600 gap-y-4">
+			<span class='text-sm'>Amount</span>
+			<span id="amount-span" class='justify-self-end font-medium'>$585.00</span>
+			<span class='text-sm'>Shipping</span>
+			<span id="shipping-span" class='justify-self-end font-medium'>$15.00</span>
+			<hr class="col-span-2 border-line">
+			<span class='text-sm'>Total</span>
+			<span id="total-span" class='justify-self-end font-medium'></span>
+		</div>
 	</main>
+	<footer class="px-[5.60vw] fixed bottom-0 inset-x-0 rounded-t-3xl bg-white/40 backdrop-blur-lg border-t border-gray-500/50">
+			<button class="flex justify-center items-center gap-x-3 w-full my-4 bg-[#101010] text-white text-sm font-bold px-15 cursor-pointer shadow-add-to-cart-btn rounded-full">
+				Continue to Payment
+				<svg id="check-out" width="19" height="48" viewBox="0 0 46 48" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+			</button>
+		</footer>
 	
 	<script type="module" src="src/main.js"></script>
 	<script type="module" src="src/checkout.js"></script>
