@@ -3,6 +3,7 @@ import{shippingType} from './shipping-type-logic.js';
 
 const wrappwer = document.getElementById('wrapper');
 const applyBtn = document.getElementById('applyBtn');
+const back = document.getElementById('back');
 
 shippingType.forEach(item => {
 	wrappwer.insertAdjacentHTML('beforeend', `<label class="address-label flex items-center justify-between gap-x-5 p-5 rounded-3xl bg-white cursor-pointer shadow-cart">
@@ -38,3 +39,4 @@ wrappwer.addEventListener('click', (event) => {
 //});
 
 applyBtn.addEventListener('click', () => location.href = '/checkout');
+back.addEventListener('click', () => history.back());

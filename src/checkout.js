@@ -12,6 +12,8 @@ const amountSpan = document.getElementById('amount-span');
 const shippingSpan = document.getElementById('shipping-span');
 const totalSpan = document.getElementById('total-span');
 const checkOutSvg = document.getElementById('check-out');
+const continueBtn = document.getElementById('continue');
+const back = document.getElementById('back');
 
 if(getAddress().length === 0) addNewAddressBtn.classList.remove('hidden');
 else{
@@ -55,7 +57,6 @@ function renderProductsOfCart(){
 			<div class="flex flex-col justify-around basis-65/100 min-w-0">
 				<div class="flex justify-between">
 					<h4 class="font-bold text-[1.125rem]/none tracking-[-4%] text-title truncate">${item.name}</h4>
-					<img class='trash-icon cursor-pointer' src="public/trash.svg" alt="trash">
 				</div>
 				<div class="flex items-center text-sm text-[#434343] gap-x-1">
 					<div class="bg-gray-600 size-4 rounded-full"></div>
@@ -101,10 +102,11 @@ shippingTypeWrapper.addEventListener('click', event => {
 })
 
 const cart = getCart();
-const totalPrice = cart.reduce((total,item) => item.price * item.quantity + total,0)
-amountSpan.innerText = '$' + totalPrice;
+const totalProductsPrice = cart.reduce((total,item) => item.price * item.quantity + total,0);
+const totalPayPrice = totalProductsPrice + selectedShippingType.price;
+amountSpan.innerText = '$' + totalProductsPrice;
 shippingSpan.textContent = '$' + selectedShippingType.price;
-totalSpan.textContent = '$' + totalPrice + selectedShippingType.price;
+totalSpan.textContent = '$' + totalPayPrice;
 
 checkOutSvg.innerHTML = `<!-- خط سمت چپ -->
   <path
@@ -119,3 +121,6 @@ checkOutSvg.innerHTML = `<!-- خط سمت چپ -->
     d="M18 14.5C18 13.35 19.27 12.63 20.27 13.22L38.77 22.72C39.82 23.26 39.82 24.74 38.77 25.28L20.27 34.78C19.27 35.37 18 34.65 18 33.5V14.5Z"
     fill="white"
   />`;
+
+continueBtn.addEventListener('click', () => location.href = '/payment');
+back.addEventListener('click', () => location.href = 'cart-page');

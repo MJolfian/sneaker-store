@@ -13,6 +13,7 @@ const pTagOfTotalAddressErrorOfNewAddressModal = document.getElementById('descri
 const pTagOfTitleAddressErrorOfNewAddressModal = document.getElementById('title-err');
 const dialogCloseBtn = document.getElementById('dialog-close-btn');
 const applyBtn = document.getElementById('applyBtn');
+const back = document.getElementById('back');
 
 
 const params = new URLSearchParams(location.search);
@@ -116,3 +117,4 @@ wrapper.addEventListener('change', (event) => {
 //});
 
 applyBtn.addEventListener('click', () => history.back());
+back.addEventListener('click', () => history.back());

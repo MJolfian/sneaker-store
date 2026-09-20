@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://kit.fontawesome.com/101f7d402a.js" crossorigin="anonymous"></script>
+		<link rel="icon" type="image/svg+xml" href="/shoe.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>payment</title>
+	</head>
+
+<body class="font-inter">
+	<header class="mx-[5.60vw] flex items-center gap-x-4 mt-4 mb-7">
+		<img id="back" src="public/leftArrow.svg" alt="back" class="cursor-pointer">
+		<span class="text-[1.5rem]/[100%] font-semibold text-title">Payment Methods</span>
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30" class="ml-auto">
+		  <!-- Rounded square -->
+		  <rect x="80" y="80" width="352" height="352" rx="140" fill="none" stroke="#000" stroke-width="24"/>
+		  <!-- Plus -->
+		  <path d="M256 185 V327 M185 256 H327" fill="none" stroke="#000" stroke-width="24" stroke-linecap="round"/>
+		</svg>
+	</header>
+	<p class="mx-[5.60vw] font-normal text-gray-600">Select the payment methods you want to use.</p>
+	<form id="payment-form">
+		<div id="wrapper" class="flex flex-col gap-y-4 pt-4 pb-6 mx-[5.60vw]"></div>
+	</form>
+	<footer class="px-[5.60vw] fixed bottom-0 inset-x-0 rounded-t-3xl bg-white/40 backdrop-blur-lg border-t border-gray-500/50">
+		<button id="continue" type="submit" form="payment-form" class="flex justify-center items-center gap-x-3 w-full my-4 bg-[#101010] text-white text-sm font-bold px-15 cursor-pointer shadow-add-to-cart-btn rounded-full">
+			Confirm Payment
+		<svg id="check-out" width="19" height="48" viewBox="0 0 46 48" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+		</button>
+	</footer>
+	
+	<script type="module" src="src/main.js"></script>
+	<script type="module" src="src/payment.js"></script>
+</body>
+</html>

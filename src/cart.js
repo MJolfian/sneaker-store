@@ -46,6 +46,10 @@ export function decreaseQuantity(pid) {
 
 export function removeFromCart(pid) {
     cart = cart.filter(item => item.pid !== pid);
-
     saveCart();
+}
+
+export function clearCart(){
+	cart = [];
+	saveCart();
 }

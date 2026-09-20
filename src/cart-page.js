@@ -10,6 +10,7 @@ const parentDivInDeleteModal = document.getElementById('parentDivInDeleteModal')
 const cancelBtnInDeleteModal = document.getElementById('cancelBtnInDeleteModal');
 const yesRemoveBtnInDeleteModal = document.getElementById('yesRemoveBtnInDeleteModal');
 const whitePartOfDeleteModal = document.getElementById('whitePartOfDeleteModal');
+const continueBtn = document.getElementById('continue');
 
 checkoutIcon.innerHTML = `<!-- خط سمت چپ -->
   <path
@@ -128,3 +129,5 @@ yesRemoveBtnInDeleteModal.addEventListener('click', () => {
 deleteModal.addEventListener('click', (event) => {
 	if(!whitePartOfDeleteModal.contains(event.target)) deleteModal.classList.add('hidden');
 })
+
+continueBtn.addEventListener('click', () => location.href = '/checkout')
