@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<link rel="icon" type="image/svg+xml" href="/shoe.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://kit.fontawesome.com/101f7d402a.js" crossorigin="anonymous"></script>
 		<title>Home</title>
 	</head>
 
@@ -12,7 +13,10 @@
 			<header class="flex justify-between items-center mx-[5.60vw]">
 				<section class="flex flex-col gap-y-[10px] py-[1.16vh] justify-between font-medium text-base/[100%]">
 					<span id="greeting" class="text-greeting"><span class="font-semibold">👋</span></span>
-					<span id="span-of-user-name-show" class="font-bold text-title"></span>
+					<div class="flex gap-x-2 items-center">
+						<span id="span-of-user-name-show" class="font-bold text-title"></span>
+						<i id="logout-btn" class="fa-solid fa-power-off text-red-800 cursor-pointer" style="width: 13px; height: 13px"></i>
+					</div>
 				</section>
 				<section class="flex gap-x-4">
 					<svg id="bell-svg" width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
@@ -43,7 +47,7 @@
 				<div class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-fit' src="/profile-icon.svg" alt="profile"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">Profile</span></div>
 			</div>
 		</footer>
-		<script type="module" src="src/main.js"></script>
 		<script type="module" src="src/home.js"></script>
+		<script type="module" src="src/main.js"></script>
 	</body>
 </html>

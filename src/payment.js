@@ -1,5 +1,4 @@
 // JavaScript payment.js
-import{getCart, saveCart, clearCart} from './cart.js';
 
 const wrapper = document.getElementById('wrapper');
 const continueBtn = document.getElementById('continue');
