@@ -1,5 +1,6 @@
 // JavaScript Document
-export const baseUrl='http://localhost:3000';
+//export const baseUrl='http://localhost:3000';
+export const baseUrl='http://192.168.1.102:3000';
 export let urls={
 	auth:{
 		signup:'/auth/signup',
@@ -7,9 +8,10 @@ export let urls={
 	},
 	user:{
 		info:'/user',
-		delete:'/user'
 	},
 	sneaker:{
-		
+		getShoeBrandNames: '/sneaker/brands',
+		getShoes: (page = 1, limit = 10, search = '', brand='') => `/sneaker?page=${page}&limit=${limit}&search=${search}&brands=${brand}`,
+		getShoeItem: (id) => `/sneaker/item/${id}`
 	}
 }

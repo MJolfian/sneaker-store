@@ -1,0 +1,10 @@
+<!--Scalable Vector Graphic-->
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- دایره بزرگ -->
+  <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" fill="none"/>
+
+  <!-- سه نقطه داخل دایره -->
+  <circle cx="11" cy="16" r="2" fill="currentColor"/>
+  <circle cx="16" cy="16" r="2" fill="currentColor"/>
+  <circle cx="21" cy="16" r="2" fill="currentColor"/>
+</svg>

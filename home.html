@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" type="image/svg+xml" href="/shoe.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://kit.fontawesome.com/101f7d402a.js" crossorigin="anonymous"></script>
+		<title>Home</title>
+	</head>
+
+	<body class="font-inter min-h-dvh flex flex-col">
+		<main class="flex-1">
+			<header class="flex justify-between items-center mx-[5.60vw]">
+				<section class="flex flex-col gap-y-[10px] py-[1.16vh] justify-between font-medium text-base/[100%]">
+					<span id="greeting" class="text-greeting"><span class="font-semibold">👋</span></span>
+					<div class="flex gap-x-2 items-center">
+						<span id="span-of-user-name-show" class="font-bold text-title"></span>
+						<div id="logout-btn">
+							<i class="fa-solid fa-power-off text-red-800 cursor-pointer" style="width: 13px; height: 13px"></i>
+						</div>
+					</div>
+				</section>
+				<section class="flex gap-x-4">
+					<svg id="bell-svg" width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+					<svg id="heart-svg" width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+				</section>
+			</header>
+			<section class="relative mx-[5.60vw] bg-input mt-[0.58vh]">
+				<input id="search-input" type="search" placeholder="Search" class="w-full pl-[34px] py-2 rounded-sm placeholder:text-sm/[150%] placeholder:font-normal placeholder:text-placeholder focus:outline-2 outline-black">
+				<svg id="search-svg" class="absolute left-[13px] top-[10.5px] text-cool-gray-600" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+			</section>
+			<section class="flex justify-between mx-[5.60vw] mt-[2.17vh] font-semibold leading-[1] text-title">
+				<span class="text-[1.25rem]">Most Popular</span>
+				<span id="see-all-span" class="text-base cursor-pointer">See All</span>
+			</section>
+			<section id="wrapper-of-brand-names" class="flex gap-x-2 ml-[5.60vw] mt-[1.45vh] leading-none font-semibold text-base overflow-x-auto">
+				<button disabled id="all-btn" class="brands border-2 border-brand px-5 py-[10px] rounded-[1.56rem] disabled:text-white disabled:bg-brand cursor-pointer bg-white text-brand">All</button>
+			</section>
+			<section id="container-of-products-section" class="grid grid-cols-[repeat(auto-fit,minmax(182px,1fr))] gap-x-4 gap-y-6 mx-[5.60vw] mt-[1.74vh]">
+			</section>
+			<p id="pagination-hint" class="font-semibold text-sm/none tracking-[-4%] text-center mb-10 mt-4">Infinity Scrolling for Pagination</p>
+		</main>
+		<footer class="mx-[5.60vw]  my-5">
+			<div class="flex justify-around items-baseline text-title sm:max-w-100 sm:mx-auto">
+				<div class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-fit' src="/home-filled-icon.svg" alt="home"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">Home</span></div>
+				<a href="/cart-page.html" class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-fit' src="/cart-icon.svg" alt="cart"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">Cart</span></a >
+				<div class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-fit' src="/orders-icon.svg" alt="orders"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">Orders</span></div>
+				<div class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-fit' src="/wallet-icon.svg" alt="wallet"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">wallet</span></div>
+				<div class='flex flex-col justify-between items-center gap-y-1 cursor-pointer'><img class='w-fit' src="/profile-icon.svg" alt="profile"><span class="font-semibold text-[0.625rem]/none tracking-[-4%]">Profile</span></div>
+			</div>
+		</footer>
+		<script type="module" src="src/home.js"></script>
+		<script type="module" src="src/main.js"></script>
+	</body>
+</html>
