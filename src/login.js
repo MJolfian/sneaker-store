@@ -1,7 +1,7 @@
 // JavaScript Document
 import {form, userNameInput, passwordInput, backSvg} from './auth-svg-handler.js';
 import {login} from '../apis/auth.js';
-import {loginErrorHandler} from './error-handler.js';
+import {loginErrorHandler, clearErrors} from './error-handler.js';
 import {tokenName} from '../libs/constants.js';
 import {showToast} from './show-toast.js';
 
@@ -9,6 +9,7 @@ backSvg.addEventListener('click', ()=> location.href='/index');
 
 form.addEventListener('submit',async (event)=>{
 	event.preventDefault();
+	clearErrors();
 	let userNameInputValue=userNameInput.value;
 	let passwordInputValue=passwordInput.value;
 	let data={username:userNameInputValue, password:passwordInputValue};

@@ -21,8 +21,10 @@ const containerOfProductsSection = document.getElementById('container-of-product
 const spanOfUserNameShow = document.getElementById('span-of-user-name-show');
 const logoutBtn = document.getElementById('logout-btn');
 
-isAuthenticated();
 
+isAuthenticated(); // or we can add at the end of the home.html: <script type="module" src="src/auth-guard.js"></script>
+
+console.log(logoutBtn);
 logoutBtn.addEventListener('click', () => {
 	localStorage.removeItem(tokenName);
 	showToast('You have been successfully logged out.', 'success');
